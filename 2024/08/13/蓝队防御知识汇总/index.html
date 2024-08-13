@@ -1,0 +1,781 @@
+<!DOCTYPE html><html lang="zh-TW" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>蓝队防御知识汇总 | 5un5et's Blog | Easy living</title><meta name="author" content="5un5et"><meta name="copyright" content="5un5et"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#492971"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="蓝队防御知识汇总"><meta name="application-name" content="蓝队防御知识汇总"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#492971"><meta property="og:type" content="article"><meta property="og:title" content="蓝队防御知识汇总"><meta property="og:url" content="http://example.com/2024/08/13/%E8%93%9D%E9%98%9F%E9%98%B2%E5%BE%A1%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/index.html"><meta property="og:site_name" content="5un5et's Blog | Easy living"><meta property="og:description" content="流量分析蚁剑流量特征 请求体以 @ini_set(&amp;quot;display_errors&amp;quot;,&amp;quot;0&amp;quot;);@set_time_limit(0)  开头。 如果要对数据加密，那么必须将解码函数在请求体中一并发送，而解码函数没法加密，因此会直接暴露出来，比如能看见 base6"><meta property="og:locale" content="zh-TW"><meta property="og:image" content="https://s1.imagehub.cc/images/2024/07/31/b9777636e70a151e39d58fe8f3f14a3e.th.jpg"><meta property="article:author" content="5un5et"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://s1.imagehub.cc/images/2024/07/31/b9777636e70a151e39d58fe8f3f14a3e.th.jpg"><meta name="description" content="流量分析蚁剑流量特征 请求体以 @ini_set(&amp;quot;display_errors&amp;quot;,&amp;quot;0&amp;quot;);@set_time_limit(0)  开头。 如果要对数据加密，那么必须将解码函数在请求体中一并发送，而解码函数没法加密，因此会直接暴露出来，比如能看见 base6"><link rel="shortcut icon" href="https://s1.imagehub.cc/images/2024/07/31/b9777636e70a151e39d58fe8f3f14a3e.th.jpg"><link rel="canonical" href="http://example.com/2024/08/13/%E8%93%9D%E9%98%9F%E9%98%B2%E5%BE%A1%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://s1.imagehub.cc/images/2024/08/02/b2a09cf1bf4263a8657f5f5d647f992b.png"},
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: undefined,
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":null},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '複製成功',
+    error: '複製錯誤',
+    noSupport: '瀏覽器不支援'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '剛剛',
+    min: '分鐘前',
+    hour: '小時前',
+    day: '天前',
+    month: '個月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 5un5et","link":"連結: ","source":"來源: 5un5et's Blog | Easy living","info":"著作權歸作者所有。商業轉載請聯絡作者獲得授權，非商業轉載請註明出處。","copySuccess":"複製成功，複製和轉載請標注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切換為繁體","cht_to_chs":"你已切換為簡體","day_to_night":"你已切換為深色模式","night_to_day":"你已切換為淺色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '5un5et's Blog | Easy living',
+  title: '蓝队防御知识汇总',
+  postAI: '',
+  pageFillDescription: '流量分析, 蚁剑流量特征, 冰蝎流量特征, 哥斯拉流量特征, 菜刀流量特征, CS 流量特征, 分析研判, cpu 资源占用分析, 查看系统进程, 查看网络连接, 系统日志, 各种应用日志, 日志分析, 历史命令, 系统用户, 查看系统文件或命令是否被修改, 自动任务与启动项, 查看 ssh key 文件, Windows 日志查看（事件查看器）, 事件处置, 隔离主机, 阻断通信, 清除木马进程及其守护进程, 系统命令被篡改恢复文件, 启动项清理, 定时任务清理, ssh key 清理, 可疑用户清理, 安全加固, 针对爆破, 删除多余用户, 口令安全策略, 针对权限突破, 设置 IP 是否允许访问, 防止端口扫描, 禁止 root 用户远程登录, 防止提权, 针对攻击痕迹清理, auditd ( Linux 审核守护程序), rsyslog 日志管理工具, 补丁和更新, 安全产品, 安全厂商, 产品分类, 异常隧道特征, DNS 隧道, ICMP 隧道, 勒索病毒, Zerologon 漏洞流量分析蚁剑流量特征请求体以开头如果要对数据加密那么必须将解码函数在请求体中一并发送而解码函数没法加密因此会直接暴露出来比如能看见这样的函数明文传输默认的请求头是可修改比如蚁剑混淆加密后还有一个比较明显的特征即为参数名大多以这种形式下划线可替换为其他所以以开头的参数名后面为加密数据的数据包也可识别为蚁剑的流量特征冰蝎流量特征冰蝎使用加密编码这个版本冰蝎发送加密的之前会先通过方式向服务器申请一个密钥服务器端返回生成的位密钥之后的使用这个密钥进行加密上传到服务器再由服务器解密在第一步冰蝎必须需要获得密钥具体流量特征是一个请求中包含参数名称可变第一步的响应中包含位的密钥进行请求时内置了十几个头每次请求时会随机选择其中的一个因此当发现一个的请求头中的在频繁变换就可能是冰蝎冰蝎使用加密编码取消了的动态获取密钥使用固定的连接密钥加密的密钥为连接密码的的前位默认连接密码是即密钥是进行请求时内置了十几个头每次请求时会随机选择其中的一个因此当发现一个的请求头中的在频繁变换就可能是冰蝎连接的的请求数据包中的字段常见为冰蝎可以自定义传输协议和加密方式推荐博客提供了传输协议自定义的功能让用户对流量的加密和解密进行自定义实现流量加解密协议的去中心化版本不再有连接密码的概念自定义传输协议的算法就是连接密码字段弱特征通常是意思是浏览器可接受任何文件但最倾向和字段弱特征通常是与冰蝎的前述版本相似进行请求时内置了十几个头每次请求时会随机选择其中的一个连接的端口有一定的特征冰蝎与建立连接的同时也与目的主机建立连接每次连接使用本地端口在左右就是比较大的端口每连接一次每建立一次新的连接端口就依次增加使用长连接避免了频繁的握手造成的资源开销默认情况下请求头和响应头里会带有有固定的请求头和响应头请求字节头响应字节头默认时冰蝎都有一串密钥与冰蝎相同哥斯拉流量特征弱特征哥斯拉客户端使用语言编写在默认的情况下如果不修改会类似于具体什么版本取决于环境版本但是哥斯拉支持自定义头部这个默认特征是可以很容易去除的弱特征默认为与冰蝎相似强特征在请求包的中有一个非常致命的特征最后的分号标准的请求中最后一个的值是不应该出现的这个可以作为现阶段的一个辅助识别特征后续可能会修复响应体特征强特征对于请求体和响应体哥斯拉支持对加密的数据进行编码以及原始的加密两种形式的通讯数据如果请求体采用编码响应体返回的也是编码的数据在使用编码时响应体会出现一个很明显的固定特征这个特征是客户端和服务端编写的时候引入的即会把一个位的字符串拆成两半分别放在编码数据的前后两端整个响应包的结构体征为前十六位后十六位一个连接里面包含三次请求和三次响应三去三回类型的连接密码默认为所以请求体中会出现这样的特征等号后面很长很长菜刀流量特征菜刀使用一句话木马部分明文传输特征十分明显不过最开始使用明文传输后来使用加密加密的时候必须把解密函数一起发送过去例如将攻击进行解码因为菜刀默认是使用编码以避免被检测该部分是传递攻击此参数对应接收到的数据该参数值是使用编码的所以可以利用解码可以看到攻击明文流量特征推荐博客流量特征分析是以架构为基础的渗透测试软件分为端端和被控端基本工作流程被控端发送心跳包端收到心跳包并记录被控端主机信息被控端再次发送心跳包询问端是否有指令端发送指令给端端接受指令并加密发送给被控端被控端接受指令并解密把执行结果返回到端流量特征特征在流量中通过协议的路径在解密算法计算后位的后门得到的结果是位的后门得到的结果是该特征符合未魔改的流量特征老版本的中头是固定不变的可以作为一个特征新版本的中的头是会每次都变化的在使用下达指令时会出现请求是类型但是出现请求参数的特征该特征可以判断即使进行了证书文件的魔改可以消除数据包的部分特征但仍有部分特征没有修改例如该图中是修改了证书文件的数据包情况但是遗留了和这两个特征在的心跳包中包含着的一些信息例如端口号等等但是这些信息时加密的因此我们可以利用这款工具进行解密特征如果没有修改的默认证书或者自己手动加载自定义证书默认的证书可以直接判断出该工具是在数据包的中数据包有值和操作系统有关每个操作系统都有固定的值例如会显示在数据包的中数据包有和操作系统有关每个操作系统都有固定的值例如会显示三次握手之后发送给告诉支持的的版本以及加密套件以及第一个随机数发送给确认支持的版本生成一个随机数第二个随机数并选择了一种加密套件分析研判资源占用分析查找使用率最高的前个进程这个命令会列出所有当前运行的进程的详细信息这个选项会按照使用率的降序对进程进行排序这个命令会只显示前行的输出实时显示系统中各个进程的资源占用状况并按照使用率的降序进行排序实时显示系统中各个进程的资源占用状况并按照内存占用率的降序进行排序显示文件系统的磁盘空间使用情况这个选项会显示每个文件系统的类型这个选项会以人类可读的格式例如显示磁盘空间的使用情况查看系统进程查看网络连接显示所有的网络连接包括监听和非监听的连接不解析主机名端口或用户名称直接显示地址和端口号这样可以提高命令的执行速度仅显示监听的套接字即那些正在等待连接的端口显示协议的套接字显示协议的套接字显示与每个套接字关联的进程和进程名称显示所有连接和监听端口以数字形式显示地址和端口号不进行解析显示每个连接关联的进程显示每个连接或监听端口的可执行文件需要管理员权限系统日志整体日志登录注销日志登录日志登录失败日志当前用户定时任务日志系统应用登录日志如或系统应用登录日志等基于软件安装日志各种应用日志是的日志文件是一个用于服务的服务器软件它记录了服务器的上传和下载情况是服务器的访问日志这个日志文件记录了所有对服务器的访问活动是的日志文件是一种在和系统上实现协议的软件用于共享文件和打印机等资源是的日志文件是一种网络文件系统协议用于在网络上共享文件日志分析针对密码爆破可以用以下命令按照登录失败次数从高到低列出用户名按照登录失败次数从高到低列出地址统计并排序出成功登录的地址和对应的次数历史命令查看历史命令系统用户查看超级用户查看当前登录的用户显示已登陆的用户且在执行的命令查看登录成功的用户查看最近登录失败的用户查看所有用户最近登录的时间需要注意的是命令会查看文件来获取用户的最后登录信息然而这个文件并不会实时更新当用户登录系统时系统会记录登录事件到文件然后命令会读取这个文件来显示登录信息但是命令并不会读取文件它只会读取文件因此即使已经以用户登录了系统命令可能仍然会显示用户从未登录过此外如果是通过命令或命令切换到用户那么这种切换并不会被记录为一次登录事件因此命令也不会显示这种切换查看用户信息查看系统文件或命令是否被修改查找所有在过去天内没有被修改过的文件并列出它们的详细信息表示搜索的文件类型为普通文件访问时间指的是文件最后被读取的时间可以使用命令更改为当前时间变更时间指的是文件本身最后被变更的时间变更动作可以是等等修改时间指的是文件内容最后被修改的时间修改动作可以是重定向等等查找所有在过去两小时内被修改或创建的文件查找在过去分钟即小时内修改过的文件表示在过去分钟内或者用命令单独查看某个文件的状态确定最后修改时间查看所有别名设置攻击者是否设置了别名自动任务与启动项命令用于查看自动任务文件打开当前用户的文件进行编辑默认情况下它会使用系统指定的文本编辑器如或来打开文件编辑完成并保存后新的定时任务将被立即加载到调度程序中列出当前用户的文件内容显示所有当前设置的定时任务实际排查过程中更推荐用可能发现隐藏的信息列出用户的定时任务查看定时任务文件查看所有定时任务配置文件的详细信息主要是看修改日期查看所有启动项和服务过滤出所有的开机启动的项目查看文件需要查看服务器每个用户的主工作目录下的目录下的文件中有没有被添加未知的比如查看的文件日志查看事件查看器事件日志存储路径是操作系统的一个环境变量用于表示系统根目录所在的路径它的默认值通常是搜索栏搜索事件查看器运行窗口默认情况下事件查看器日志文件使用扩展名并且位于文件夹中重要的事件登录成功登录失败创建账户重要的登录类型远程登录查看日志可以搭配一些工具如等事件处置隔离主机断开网线即可切不可关机阻断通信说到防火墙有有它们的用法和语法不尽相同但有一点却是一致的那就是他们底层都使用了可疑地址这条命令会阻止所有来自可疑地址的入站数据包也就是说它阻止了你的系统接收来自这个地址的任何数据可疑地址这条命令会阻止所有发往可疑地址的出站数据包也就是说它阻止了你的系统发送任何数据到这个地址清除木马进程及其守护进程执行命令每秒刷新一次显示整个命令路径在结果中查找可疑进程记录进程号立即结束进程并删除相关文件是进程号列出一个进程打开的文件如果该进程有父进程守护进程那么在命令的前加个停止所有相关进程这个命令用于结束一个进程组中的所有进程系统命令被篡改恢复文件要么从其他系统拷贝文件要么重装系统还可以安装是一个集成了一百多个最常用命令和工具如等的精简工具箱它只需要几的大小很方便进行各种快速验证被誉为系统的瑞士军刀启动项清理列出所有系统服务请注意命令在一些现代的发行版中可能已经被命令取代列出所有系统服务列出所有正在运行的系统服务查看服务状态服务名如果发现可疑服务终止服务服务名禁止服务开机自启动服务名定时任务清理找到被写入的定时任务清理掉即可清理删除掉服务器下的文件中未授权的即可可疑用户清理为的除了以外的用户都是可疑用户使用命令来删除一个用户用户名如果还想删除该用户的主目录和邮件池可以添加参数用户名安全加固针对爆破删除多余用户在中查找除以外的用户用命令删除口令安全策略禁止空口令以下命令可用于查找空口令用户设置口令复杂度相关的配置文件在目录下配置的模块设置密码复杂度这表示用户在输入不符合要求的密码时可以重试的次数是次这表示新密码和旧密码之间至少需要有个字符的不同这表示密码的最小长度是个字符这表示密码中至少需要包含一个小写字母这表示密码中至少需要包含一个数字负号表示至少的意思此外最少大写字母最少的字符数量设置口令有效期编辑器的搜索功能在状态下按下键这时在状态栏也就是屏幕左下脚就出现了然后输入要查找的关键字敲回车就可以了编辑器显示行号只须按键退出编辑内容模式输入再输入或者后按回车键就可以显示行号了在文件中密码最长有效期默认值相当于关闭了密码的时效密码最短有效期密码最小强度推荐最小密码为位设定在口令失效前多少天开始通知用户更改密码针对的登录失败锁定策略配置文件使用模块设置登录失败锁定使用模块是一个模块用于记录和统计登录失败的次数如果一个用户连续次登录失败那么该用户的账户将被锁定被锁定的账户将在秒即分钟后自动解锁即使是用户也会被锁定被锁定的用户的账户将在秒即分钟后自动解锁重置用户的登录失败计数解锁用户入侵检测系统是一个入侵检测系统框架它可以保护电脑服务器免受蛮力攻击以程序设计语言编写并能够在类系统上运行这些系统具有本地安装的数据包控制系统或防火墙的接口例如或跟是类似的工具可以阻挡有人恶意以字典暴力破解密码通常应用于有开启跟的主机上的做法是将超过多次失败联机的列用给使用或给使用禁止该之后的联机至于要多久之后可以再允许该再次联机可以在的配置文件案内设置针对权限突破设置是否允许访问黑名单此文件中可以配置不被允许访问的主机名单表示拒绝所有访问表示拒绝段所有访问表示拒绝主机访问白名单此文件中可以配置白名单表示段都能访问表示允许所有的访问表示允许访问配置防火墙策略禁止访问防止端口扫描将常见端口号修改为其他端口号不易识别关闭不必要的服务使用等防火墙防止端口扫描布置陷阱我们随机监听一些未使用的端口假如有在短时间内前来连接好几个那么很可能就是扫描者于是可临时屏蔽该所有流量保护那些还未被扫到的端口禁止用户远程登录配置文件这是的配置文件其中包含了的配置规则设置是否运行用登录这里一定要设置成防止提权禁止非法提权配置文件在此配置文件中配置只允许组用户到不允许组的用户只允许组的用户防止权限是文件的一种特殊权限除去读写执行的权限可以使普通用户运行此文件时被临时授予文件所有者的权限以此权限来运行所以利用提权的核心就是运行用户的拥有权限的文件那么运行该文件的时候就得获得用户的身份了设置权限设置去除找出用户所有设置了的文件这表示查找的文件的权限设置中包含位防止提权配置文件命令是专门用来编辑文件的工具保存退出时会自动检查语法错误如果给用户添加权限如果给用户组添加权限如果普通用户被添加了权限那么普通用户输入自己的密码就可以切换到用户而不需要知道用户的密码针对攻击痕迹清理审核守护程序推荐博客审计工具使用详解通常已经默认安装体系的比如需要手动安装日志管理工具补丁和更新基于的更新命令列出可更新的软件清单升级指定软件列出可更新的软件包详细信息列出可用的安全补丁升级系统版本和所有软件安全产品安全厂商深信服产品启明星辰统一升级中心阿里云云安全中心产品分类监控告警防火墙堡垒机运维审计系统入侵检测系统入侵防御系统态势感知主机杀毒安全管理平台抗蜜罐终端安全管理系统漏洞扫描渗透测试服务异常隧道特征隧道奇怪的域名类型隧道协议用于探测内网主机是否存活有内外连接的数据包很多的数据包内容很大的勒索病毒什么是勒索病毒勒索病毒是指通过暴力破解以及漏洞攻击钓鱼等方式攻击到客户内网主机并对重要服务器数据进行加密的病毒勒索病毒类型勒索病毒预防首先避免高危服务如对互联网开放对内进行安全意识培训避免普通员工点击恶意文件定期对互联网业务系统进行漏洞扫描和渗透及时发现高危漏洞并及时修补做好备份有条件的可以实时异地备份勒索病毒特征所有文件都会被加后缀勒索者会留下联系方式处理办法根据后缀和联系方式去互联网搜索有概率搜到勒索病毒的类型及传播方式找专门的谈判公司去跟勒索者谈判以较低价格购买解密私钥既然无法还原勒索应急的意义是什么溯源找到入口修补漏洞避免再次出现勒索应急流程了解客户对公网映射的情况开放了哪些端口和服务是否有高危的端口和服务勒索病毒一般是通过爆破进来的一般针对系统查看事件查看器这个事件表示成功登陆的用户用来筛选该系统的用户登陆成功情况这个事件表示登陆失败的用户排查客户是否使用了弱密码有弱密码有爆破记录在非业务时间非本人登录大概率可以确定了常见的勒索病毒后缀有等据统计年月家族占比居首位第二的是占比的家族以位居第三漏洞域提权漏洞漏洞分析利用该漏洞可将域管理员密码置空利用的是协议伴随出现的日志事件为',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-13 11:14:56',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#492971')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#4285f4')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://s1.imagehub.cc/images/2024/07/31/b9777636e70a151e39d58fe8f3f14a3e.th.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">5un5et's Blog | Easy living</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新評論</span></div><div class="aside-list"><span>正在載入中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>歸檔</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BA%A2%E8%93%9D%E7%9F%A5%E8%AF%86/" itemprop="url">红蓝知识</a></span><span class="article-meta tags"></span></div></div><h1 class="post-title" itemprop="name headline">蓝队防御知识汇总</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">發表於</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-08-13T02:35:07.000Z" title="發表於 2024-08-13 10:35:07">2024-08-13</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新於</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-08-13T03:14:56.760Z" title="更新於 2024-08-13 11:14:56">2024-08-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为长沙"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>长沙</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src=""></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://example.com/2024/08/13/%E8%93%9D%E9%98%9F%E9%98%B2%E5%BE%A1%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/"><header><a class="post-meta-categories" href="/categories/%E7%BA%A2%E8%93%9D%E7%9F%A5%E8%AF%86/" itemprop="url">红蓝知识</a><h1 id="CrawlerTitle" itemprop="name headline">蓝队防御知识汇总</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">5un5et</span><time itemprop="dateCreated datePublished" datetime="2024-08-13T02:35:07.000Z" title="發表於 2024-08-13 10:35:07">2024-08-13</time><time itemprop="dateCreated datePublished" datetime="2024-08-13T03:14:56.760Z" title="更新於 2024-08-13 11:14:56">2024-08-13</time></header><h3 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h3><h6 id="蚁剑流量特征"><a href="#蚁剑流量特征" class="headerlink" title="蚁剑流量特征"></a>蚁剑流量特征</h6><ul>
+<li>请求体以 <code>@ini_set(&quot;display_errors&quot;,&quot;0&quot;);@set_time_limit(0)</code>  开头。</li>
+<li>如果要对数据加密，那么必须将解码函数在请求体中一并发送，而解码函数没法加密，因此会直接暴露出来，比如能看见 <code>base64_decode</code> 这样的函数明文传输。</li>
+<li>默认的 user-agent 请求头是 antsword xxx（可修改），比如：<code>User-Agent: antSword/v2.1</code> 。</li>
+<li>蚁剑混淆加密后还有一个比较明显的特征，即为参数名大多以 <code>_0x.....=</code> 这种形式（下划线可替换为其他）所以，以 <code>_0x</code> 开头的参数名，后面为加密数据的数据包也可识别为蚁剑的流量特征。</li>
+</ul>
+<h6 id="冰蝎流量特征"><a href="#冰蝎流量特征" class="headerlink" title="冰蝎流量特征"></a>冰蝎流量特征</h6><p><strong>冰蝎 2.0</strong> </p>
+<p>使用 AES 加密 + base64 编码。这个版本冰蝎发送加密的 webshell 之前，会先通过 GET 方式向服务器申请一个 AES 密钥，服务器端返回生成的 16 位密钥，之后的 webshell 使用这个密钥进行加密，上传到服务器再由服务器解密。</p>
+<ul>
+<li>在第一步，冰蝎必须需要获得密钥，具体流量特征：是一个 get 请求，url 中包含 <code>?pass=</code>（参数名称可变）。</li>
+<li>第一步的响应中包含 16 位的密钥。</li>
+<li>进行请求时内置了十几个 User-Agent 头，每次请求时会随机选择其中的一个。因此当发现一个 ip 的请求头中的 user-agent 在频繁变换，就可能是冰蝎。</li>
+</ul>
+<p><strong>冰蝎 3.0</strong> </p>
+<p>使用 AES 加密 + base64 编码，取消了 2.0 的动态获取密钥，使用固定的连接密钥。AES 加密的密钥为 webshell 连接密码的 MD5 的前 16 位，默认连接密码是 “ rebeyond “ ( 即密钥是 md5(‘rebeyond’)[0:16] &#x3D; <code>e45e329feb5d925b</code> )。</p>
+<ul>
+<li>进行请求时内置了十几个 User-Agent 头，每次请求时会随机选择其中的一个。因此当发现一个 ip 的请求头中的 user-agent 在频繁变换，就可能是冰蝎。</li>
+<li>连接 jsp 的 webshell 的请求数据包中的 content-type 字段常见为 application&#x2F;octet-stream 。</li>
+</ul>
+<p><strong>冰蝎 4.0</strong></p>
+<p>可以自定义传输协议和加密方式。</p>
+<p>推荐博客：<a target="_blank" rel="noopener" href="https://javaziliao.com/post/706.html">https://javaziliao.com/post/706.html</a></p>
+<ul>
+<li>提供了传输协议自定义的功能，让用户对流量的加密和解密进行自定义，实现流量加解密协议的去中心化。4.0 版本不再有连接密码的概念，自定义传输协议的算法就是连接密码。</li>
+<li>Accept 字段（弱特征），通常是 <code>Accept: application/json, text/javascript, */*; q=0.01</code> ，意思是浏览器可接受任何文件，但最倾向 application&#x2F;json 和 text&#x2F;javascript 。</li>
+<li>Content-Type 字段（弱特征），通常是 <code>Content-type: Application/x-www-form-urlencoded</code> 。</li>
+<li>与冰蝎的前述版本相似，进行请求时内置了十几个 User-Agent 头，每次请求时会随机选择其中的一个。</li>
+<li>连接的端口有一定的特征，冰蝎与 webshell 建立连接的同时，javaw 也与目的主机建立 tcp 连接，每次连接使用本地端口在 49700 左右(就是比较大的端口)，每连接一次，每建立一次新的连接，端口就依次增加。</li>
+<li>使用长连接，避免了频繁的握手造成的资源开销。默认情况下，请求头和响应头里会带有 <code>Connection: Keep-Alive</code> </li>
+<li>有固定的请求头和响应头，请求字节头：<code>dFAXQV1LORcHRQtLRlwMAhwFTAg/M</code> ，响应字节头：<code>TxcWR1NNExZAD0ZaAWMIPAZjH1BFBFtHThcJSlUXWEd</code> 。</li>
+<li>默认时，冰蝎 webshell 都有 “ e45e329feb5d925b ”  一串密钥，与冰蝎 3.0 相同。</li>
+</ul>
+<h6 id="哥斯拉流量特征"><a href="#哥斯拉流量特征" class="headerlink" title="哥斯拉流量特征"></a>哥斯拉流量特征</h6><ul>
+<li>User-Agent （弱特征）：哥斯拉客户端使用 JAVA 语言编写，在默认的情况下，如果不修改 User-Agent ，User-Agent 会类似于Java&#x2F;1.8.0_121（具体什么版本取决于 JDK 环境版本）。但是哥斯拉支持自定义 HTTP 头部，这个默认特征是可以很容易去除的。</li>
+<li>Accept（弱特征）：默认为：<code>text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2</code> ，与冰蝎相似。</li>
+<li>Cookie（强特征）：在请求包的 Cookie 中有一个非常致命的特征，最后的分号。标准的 HTTP 请求中最后一个 Cookie 的值是不应该出现 ; 的，这个可以作为现阶段的一个辅助识别特征。后续可能会修复。</li>
+<li>响应体特征（强特征）：对于请求体和响应体，哥斯拉支持对加密的数据进行 base64 编码以及原始的加密 raw 两种形式的通讯数据。如果请求体采用 base64 编码，响应体返回的也是 base64 编码的数据。在使用 base64 编码时，响应体会出现一个很明显的固定特征，这个特征是客户端和服务端编写的时候引入的。即会把一个 32 位的 md5 字符串拆成两半，分别放在 base64 编码数据的前后两端，整个响应包的结构体征为：md5 前十六位+ base64 + md5 后十六位。</li>
+<li>一个 tcp 连接里面包含三次 http 请求和三次 http 响应，“ 三去三回 ”。</li>
+<li>jsp 类型的 webshell 连接密码默认为 pass ，所以请求体中会出现 pass&#x3D;xxx 这样的特征，等号后面很长很长。</li>
+</ul>
+<h6 id="菜刀流量特征"><a href="#菜刀流量特征" class="headerlink" title="菜刀流量特征"></a>菜刀流量特征</h6><p>菜刀使用一句话木马，payload 部分明文传输，特征十分明显。</p>
+<p>不过，最开始使用明文传输，后来使用 base64 加密，加密的时候必须把解密函数一起发送过去，例如：</p>
+<p><code>(base64_decode ($_POST [z0]))</code> ，将攻击 payload 进行 Base64 解码，因为菜刀默认是使用 Base64 编码，以避免被检测；</p>
+<p><code>&amp;z0=QGluaV9zZXQ... </code>，该部分是传递攻击 payload，此参数 z0 对应 $_POST [z0] 接收到的数据，该参数值是使用 Base64 编码的，所以可以利用 base64 解码可以看到攻击明文。</p>
+<h6 id="CS-流量特征"><a href="#CS-流量特征" class="headerlink" title="CS 流量特征"></a>CS 流量特征</h6><p>推荐博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_52741673/article/details/131781810">Cobalt Strike 流量特征分析</a></p>
+<p>Cobalt Strike 是以 C&#x2F;S 架构为基础的渗透测试软件，分为 client 端、server 端和被控端。</p>
+<p>Cobalt Strike 基本工作流程：</p>
+<ol>
+<li>被控端发送心跳包</li>
+<li>server 端收到心跳包并记录被控端主机信息</li>
+<li>被控端再次发送心跳包询问 server 端是否有指令</li>
+<li>client 端发送指令给 server 端</li>
+<li>server 端接受指令并加密，发送给被控端</li>
+<li>被控端接受指令并解密，把执行结果返回到 server 端</li>
+</ol>
+<p><strong>流量特征</strong> </p>
+<p>HTTP 特征：</p>
+<ul>
+<li>在流量中，通过 http 协议的 url 路径，在 checksum8 解密算法计算后，32 位的后门得到的结果是 92 ，64 位的后门得到的结果是 93 ，该特征符合未魔改 Cobalt Strike 的流量特征。</li>
+<li>老版本的 cobalt strike 中 user-agent 头是固定不变的，可以作为一个特征，新版本的 cobalt strike 中的 user-agent 头是会每次都变化的。</li>
+<li>在使用 cobalt strike 下达指令时，会出现请求是 POST 类型但是出现 GET 请求参数 <code>/sumbit.php?id=xxx</code> 的特征，该特征可以判断cobalt strike 。</li>
+<li>即使 cobalt strike 进行了证书文件的魔改，可以消除数据包的部分特征，但仍有部分特征没有修改，例如该图中是修改了 cobalt strike 证书文件的数据包情况，但是遗留了GET &#x2F;cx 和 POST &#x2F;q.cgi 这两个特征。</li>
+<li>在 cobalt strike 的心跳包中包含着 cobalt strike 的一些信息，例如 ip ，端口号等等，但是这些信息时加密的，因此我们可以利用 Didier stevens suite 这款工具进行解密。</li>
+</ul>
+<p>HTTPS 特征：</p>
+<ul>
+<li><p>如果没有修改 cobalt strike 的默认证书或者自己手动加载自定义证书，默认的 cobalt strike 证书可以直接判断出该工具是 cobalt strike 。</p>
+</li>
+<li><p>在数据包的 client hello 中，数据包有 JA3 值，和操作系统有关，每个操作系统都有固定的值，例如 windows11 会显示：</p>
+<p>JA3:db36bad574044a5104a59b0c676991ef</p>
+<p>JA3:4d5efa96609dc906f796e63cff009c2a</p>
+</li>
+<li><p>在数据包的 server hello 中，数据包有 JA3s ，和操作系统有关，每个操作系统都有固定的值，例如 windows11 会显示</p>
+<p>JA3s:15af977ce25de452b96affa2addb1036</p>
+<p>JA3s:2253c82f03b621c5144709b393fde2c9</p>
+</li>
+</ul>
+<p>TCP 三次握手之后，client 发送 client hello 给 server ，告诉 server 支持的 TLS 的版本以及加密套件，以及第一个随机数 random ；</p>
+<p>server 发送 server hello 给 client ，确认支持的版本，生成一个随机数 random（第二个随机数），并选择了一种加密套件；</p>
+<h3 id="分析研判"><a href="#分析研判" class="headerlink" title="分析研判"></a>分析研判</h3><h6 id="cpu-资源占用分析"><a href="#cpu-资源占用分析" class="headerlink" title="cpu 资源占用分析"></a>cpu 资源占用分析</h6><p>查找 CPU 使用率最高的前 10 个进程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -aux --sort=-pcpu|head -10</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>ps -aux</code>：这个命令会列出所有当前运行的进程的详细信息。</li>
+<li><code>--sort=-pcpu</code>：这个选项会按照 CPU 使用率的降序对进程进行排序。</li>
+<li><code>head -10</code>：这个命令会只显示前 10 行的输出。</li>
+</ul>
+<p>实时显示系统中各个进程的资源占用状况，并按照 CPU 使用率的降序进行排序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -c -o %CPU</span><br></pre></td></tr></table></figure>
+
+<p>实时显示系统中各个进程的资源占用状况，并按照内存占用率的降序进行排序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -c -o %MEM</span><br></pre></td></tr></table></figure>
+
+<p>显示文件系统的磁盘空间使用情况：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -Th </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-T</code>：这个选项会显示每个文件系统的类型。</li>
+<li><code>-h</code>：这个选项会以人类可读的格式（例如 KB、MB、GB）显示磁盘空间的使用情况。</li>
+</ul>
+<h6 id="查看系统进程"><a href="#查看系统进程" class="headerlink" title="查看系统进程"></a>查看系统进程</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -aux</span><br></pre></td></tr></table></figure>
+
+<h6 id="查看网络连接"><a href="#查看网络连接" class="headerlink" title="查看网络连接"></a>查看网络连接</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat</span><br></pre></td></tr></table></figure>
+
+<p>Linux：netstat -anlutp</p>
+<ul>
+<li>**<code>-a</code>**：显示所有的网络连接，包括监听和非监听的连接。</li>
+<li>**<code>-n</code>**：不解析主机名、端口或用户名称，直接显示IP地址和端口号，这样可以提高命令的执行速度。</li>
+<li>**<code>-l</code>**：仅显示监听的套接字，即那些正在等待连接的端口。</li>
+<li>**<code>-u</code>**：显示UDP协议的套接字。</li>
+<li>**<code>-t</code>**：显示TCP协议的套接字。</li>
+<li>**<code>-p</code>**：显示与每个套接字关联的进程 ID 和进程名称。</li>
+</ul>
+<p>Windows：netstat -anob</p>
+<ul>
+<li>**<code>-a</code>**：显示所有连接和监听端口。</li>
+<li>**<code>-n</code>**：以数字形式显示地址和端口号，不进行DNS解析。</li>
+<li>**<code>-o</code>**：显示每个连接关联的进程 ID（PID）。</li>
+<li>**<code>-b</code>**：显示每个连接或监听端口的可执行文件（需要管理员权限）。</li>
+</ul>
+<h6 id="系统日志"><a href="#系统日志" class="headerlink" title="系统日志"></a>系统日志</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">整体日志		  						/var/log/message</span><br><span class="line">登录注销日志last 	   					/var/log/wtmp</span><br><span class="line">登录日志lastlog   						/var/log/lastlog</span><br><span class="line">登录失败日志lastb    					/var/log/btmp</span><br><span class="line">当前用户w,who,users					 /var/log/utmp</span><br><span class="line">定时任务日志 		   					/var/log/cron</span><br><span class="line">系统应用登录日志（如 CentOS 或 RHEL）	  /var/log/secure</span><br><span class="line">系统应用登录日志（kali等基于Debian）	  /var/log/auth.log</span><br><span class="line">软件安装日志        				 /var/log/yum.log</span><br></pre></td></tr></table></figure>
+
+<h6 id="各种应用日志"><a href="#各种应用日志" class="headerlink" title="各种应用日志"></a>各种应用日志</h6><ul>
+<li><code>/var/log/vsftp.log</code> 是 <strong>VSFTP</strong> 的日志文件。VSFTP 是一个用于 FTP 服务的服务器软件，它记录了服务器的上传和下载情况。</li>
+<li><code>/var/log/httpd/access.log</code> 是 <strong>Apache HTTP 服务器</strong> 的访问日志。这个日志文件记录了所有对 Web 服务器的访问活动。</li>
+<li><code>/var/log/samba</code> 是 <strong>Samba</strong> 的日志文件。Samba 是一种在 Linux 和 Unix 系统上实现 SMB 协议的软件，用于共享文件和打印机等资源。</li>
+<li><code>/var/log/nfs</code> 是 <strong>NFS (Network File System)</strong> 的日志文件。NFS 是一种网络文件系统协议，用于在网络上共享文件。</li>
+</ul>
+<h6 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h6><p>针对密码爆破，可以用以下命令按照登录失败次数从高到低列出用户名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;Failed password&quot; /var/log/secure| perl -e &#x27;while($_=&lt;&gt;)&#123; /for(.*?) from/; print &quot;$1\ n&quot;;&#125;&#x27;|uniq -c|sort -nr</span><br></pre></td></tr></table></figure>
+
+<p><strong>按照登录失败次数从高到低列出 IP 地址</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;Failed password&quot; /var/log/secure| grep -E -o &quot;(25[0-5]|2[0-4][0-9]|[01]?[0-9][0- 9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.( 25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0- 5]|2[0-4][0-9]|[01]?[0-9][0-9]?)&quot;|uniq -c</span><br></pre></td></tr></table></figure>
+
+<p>统计并排序出成功登录的 IP 地址和对应的次数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;Accepted &quot; /var/log/secure | awk &#x27;&#123; print $11&#125;&#x27; | sort | uniq -c | sort -nr | more</span><br></pre></td></tr></table></figure>
+
+<h6 id="历史命令"><a href="#历史命令" class="headerlink" title="历史命令"></a>历史命令</h6><p>查看历史命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history</span><br></pre></td></tr></table></figure>
+
+<h6 id="系统用户"><a href="#系统用户" class="headerlink" title="系统用户"></a>系统用户</h6><p>查看超级用户(uid&#x3D;0)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F: &#x27;$3==0&#123;print $1&#125;&#x27; /etc/passwd </span><br></pre></td></tr></table></figure>
+
+<p><code>who</code> 查看当前登录的用户 </p>
+<p><code>w</code> 显示已登陆的用户，且在执行的命令 </p>
+<p><code>last</code> 查看登录成功的用户 </p>
+<p><code>lastb</code> 查看最近登录失败的用户 </p>
+<p><code>lastlog</code> 查看所有用户最近登录的时间，</p>
+<p>需要注意的是 <code>lastlog</code> 命令会查看 <code>/var/log/lastlog</code> 文件来获取用户的最后登录信息。然而，这个文件并不会实时更新。当用户登录系统时，系统会记录登录事件到 <code>/var/run/utmp</code> 文件，然后 <code>last</code> 命令会读取这个文件来显示登录信息。但是，<code>lastlog</code> 命令并不会读取 <code>/var/run/utmp</code> 文件，它只会读取 <code>/var/log/lastlog</code> 文件。因此，即使已经以 root 用户登录了系统，<code>lastlog</code> 命令可能仍然会显示 root 用户从未登录过。</p>
+<p>此外，如果是通过 <code>su</code> 命令或 <code>sudo -i</code> 命令切换到 root 用户，那么这种切换并不会被记录为一次登录事件，因此 <code>lastlog</code> 命令也不会显示这种切换。</p>
+<p><code>cat /etc/passwd</code> 查看用户信息</p>
+<h6 id="查看系统文件或命令是否被修改"><a href="#查看系统文件或命令是否被修改" class="headerlink" title="查看系统文件或命令是否被修改"></a>查看系统文件或命令是否被修改</h6><p>查找所有在过去 7 天内没有被修改过的文件，并列出它们的详细信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /usr/bin/ /usr/sbin/ /bin/ /usr/local/bin/ -type f -mtime +7 | xargs ls -alh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-type f：表示搜索的文件类型为普通文件；</li>
+<li>atime：访问时间（access time），指的是文件最后被读取的时间，可以使用 touch 命令更改为当前时间； </li>
+<li>ctime：变更时间（change time），指的是文件本身最后被变更的时间，变更动作可以是 chmod 、chgrp 、mv 等等； </li>
+<li>mtime：修改时间（modify time），指的是文件内容最后被修改的时间，修改动作可以是 echo 重定向、vi 等等；</li>
+</ul>
+<p>*<strong>查找所有在过去两小时内被修改或创建的文件</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -type f -mmin -120</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**<code>-mmin -120</code>**：查找在过去 120 分钟（即 2 小时）内修改过的文件。<code>-120</code> 表示在过去 120 分钟内。</li>
+</ul>
+<p>或者用 stat 命令单独查看某个文件的状态，确定最后修改时间：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stat /usr/bin/ps</span><br></pre></td></tr></table></figure>
+
+<p>查看所有别名设置，攻击者是否设置了别名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias</span><br></pre></td></tr></table></figure>
+
+<h6 id="自动任务与启动项"><a href="#自动任务与启动项" class="headerlink" title="自动任务与启动项"></a>自动任务与启动项</h6><p>crontab 命令用于查看自动任务文件：</p>
+<ul>
+<li>**<code>crontab -e</code>**：打开当前用户的crontab文件进行编辑。默认情况下，它会使用系统指定的文本编辑器（如<code>vi</code>或<code>nano</code>）来打开文件。编辑完成并保存后，新的定时任务将被立即加载到cron调度程序中。</li>
+<li>**<code>crontab -l</code>**：列出当前用户的crontab文件内容。显示所有当前设置的定时任务。</li>
+</ul>
+<p>实际排查过程中，更推荐用 crontab -e ，可能发现隐藏的信息。</p>
+<p>列出 user 用户的定时任务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -u user -l</span><br></pre></td></tr></table></figure>
+
+<p>查看定时任务文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/crontab</span><br></pre></td></tr></table></figure>
+
+<p>查看所有定时任务配置文件的详细信息，主要是看修改日期：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ll /etc/cron*</span><br></pre></td></tr></table></figure>
+
+<p>查看所有启动项和服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-unit-files</span><br></pre></td></tr></table></figure>
+
+<p>过滤出所有的开机启动的项目：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-unit-files |grep enabled</span><br></pre></td></tr></table></figure>
+
+<h6 id="查看-ssh-key-文件"><a href="#查看-ssh-key-文件" class="headerlink" title="查看 ssh key 文件"></a>查看 ssh key 文件</h6><p>需要查看服务器每个用户的主工作目录下的 .ssh 目录下的 key 文件中有没有被添加未知的 key ，比如查看 root 的 ssh key 文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /root/.ssh </span><br><span class="line">cat authorized_keys</span><br></pre></td></tr></table></figure>
+
+<h6 id="Windows-日志查看（事件查看器）"><a href="#Windows-日志查看（事件查看器）" class="headerlink" title="Windows 日志查看（事件查看器）"></a>Windows 日志查看（事件查看器）</h6><p>Windows 事件日志存储路径：C:\Windows\System32\winevt\Logs</p>
+<p>systemroot 是 Windows 操作系统的一个环境变量，用于表示系统根目录所在的路径。 它的默认值通常是 C:\Windows 。</p>
+<p>搜索栏搜索：<strong>事件查看器</strong> </p>
+<p>运行窗口：eventvwr.msc </p>
+<p>默认情况下，事件查看器日志文件使用 .evt 扩展名，并且位于 <strong>%SystemRoot%\System32\winevt\Logs</strong> 文件夹中。</p>
+<p>重要的事件 ID ：</p>
+<ul>
+<li>4624 - 登录成功</li>
+<li>4625 - 登录失败</li>
+<li>4720 - 创建账户</li>
+</ul>
+<p>重要的 LogonType（登录类型）：</p>
+<ul>
+<li>10 - 远程登录</li>
+</ul>
+<p>查看日志可以搭配一些工具，如：Log Parse，wmic 等。</p>
+<h3 id="事件处置"><a href="#事件处置" class="headerlink" title="事件处置"></a>事件处置</h3><h6 id="隔离主机"><a href="#隔离主机" class="headerlink" title="隔离主机"></a>隔离主机</h6><p>断开网线即可，切不可关机。</p>
+<h6 id="阻断通信"><a href="#阻断通信" class="headerlink" title="阻断通信"></a>阻断通信</h6><p>说到防火墙，CentOS 有 FirewallD ，Ubuntu 有 ufw 。它们的用法和语法不尽相同，但有一点却是一致的，那就是他们底层都使用了 iptables 。</p>
+<ul>
+<li><code>iptables -A INPUT -s 可疑地址 -j DROP</code>：这条命令会阻止所有来自 “可疑地址” 的入站数据包，也就是说，它阻止了你的系统接收来自这个 IP 地址的任何数据。</li>
+<li><code>iptables -A OUTPUT -d 可疑地址 -j DROP</code>：这条命令会阻止所有发往 “可疑地址” 的出站数据包，也就是说，它阻止了你的系统发送任何数据到这个 IP 地址。</li>
+</ul>
+<h6 id="清除木马进程及其守护进程"><a href="#清除木马进程及其守护进程" class="headerlink" title="清除木马进程及其守护进程"></a>清除木马进程及其守护进程</h6><p>执行命令，每1秒刷新一次，显示整个命令路径：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -d 1 -c</span><br></pre></td></tr></table></figure>
+
+<p>在结果中查找可疑进程，记录进程号。</p>
+<p>立即结束进程并删除相关文件，pid 是进程号：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kill -9 pid</span><br><span class="line">rm -f xxx</span><br></pre></td></tr></table></figure>
+
+<p>列出一个进程打开的文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -p [pid]</span><br></pre></td></tr></table></figure>
+
+<p>如果该进程有父进程（守护进程），那么在 kill 命令的 pid 前加个 - ，停止所有相关进程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 -pid</span><br></pre></td></tr></table></figure>
+
+<p>这个命令用于结束一个进程组中的所有进程。</p>
+<h6 id="系统命令被篡改，恢复文件"><a href="#系统命令被篡改，恢复文件" class="headerlink" title="系统命令被篡改，恢复文件"></a>系统命令被篡改，恢复文件</h6><p>要么从其他系统拷贝文件，要么重装系统。</p>
+<p>还可以安装 busybox 。</p>
+<p><code>BusyBox</code> 是一个集成了一百多个最常用 Linux 命令和工具（如 <code>cat</code>、<code>echo</code>、<code>grep</code>、<code>mount</code>、<code>telnet</code> 等）的精简工具箱，它只需要几 MB 的大小，很方便进行各种快速验证，被誉为 “ Linux 系统的瑞士军刀 ” 。</p>
+<h6 id="启动项清理"><a href="#启动项清理" class="headerlink" title="启动项清理"></a>启动项清理</h6><p>列出所有系统服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --list</span><br></pre></td></tr></table></figure>
+
+<p>请注意，<code>chkconfig</code> 命令在一些现代的 Linux 发行版中可能已经被 <code>systemctl</code> 命令取代，列出所有系统服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-unit-files --type=service</span><br></pre></td></tr></table></figure>
+
+<p>列出所有正在运行的系统服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-units --type=service --state=running</span><br></pre></td></tr></table></figure>
+
+<p>查看服务状态：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status 服务名</span><br></pre></td></tr></table></figure>
+
+<p>如果发现可疑服务，终止服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop 服务名</span><br></pre></td></tr></table></figure>
+
+<p>禁止服务开机自启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> 服务名</span><br></pre></td></tr></table></figure>
+
+<h6 id="定时任务清理"><a href="#定时任务清理" class="headerlink" title="定时任务清理"></a>定时任务清理</h6><p>找到被写入 shell 的定时任务，清理掉即可。</p>
+<h6 id="ssh-key-清理"><a href="#ssh-key-清理" class="headerlink" title="ssh key 清理"></a>ssh key 清理</h6><p>删除掉服务器下的 <code>~/.ssh/authorized_keys</code> 文件中未授权的 key 即可。</p>
+<h6 id="可疑用户清理"><a href="#可疑用户清理" class="headerlink" title="可疑用户清理"></a>可疑用户清理</h6><p>uid 为 0 的除了 root 以外的用户都是可疑用户，使用 <code>userdel</code> 命令来删除一个用户：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel 用户名</span><br></pre></td></tr></table></figure>
+
+<p>如果还想删除该用户的主目录和邮件池，可以添加 <code>-r</code> 参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel -r 用户名</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="安全加固"><a href="#安全加固" class="headerlink" title="安全加固"></a>安全加固</h3><h4 id="针对爆破"><a href="#针对爆破" class="headerlink" title="针对爆破"></a>针对爆破</h4><h6 id="删除多余用户"><a href="#删除多余用户" class="headerlink" title="删除多余用户"></a>删除多余用户</h6><p>在 &#x2F;etc&#x2F;passwd 中查找除 root 以外的用户，用 userdel 命令删除。</p>
+<h6 id="口令安全策略"><a href="#口令安全策略" class="headerlink" title="口令安全策略"></a>口令安全策略</h6><p><strong>禁止空口令</strong></p>
+<p>以下命令可用于查找空口令用户：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F: &#x27;($2 == &quot;&quot;)&#123;print $1&#125;&#x27; /etc/shadow</span><br></pre></td></tr></table></figure>
+
+<p><strong>设置口令复杂度</strong></p>
+<p>相关的配置文件在目录 <code>/etc/pam.d/</code> 下。</p>
+<p>配置 PAM（Pluggable Authentication Modules）的 <code>pam_cracklib.so</code> 模块，设置密码复杂度：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">password requisite pam_cracklib.so retry=3 difok=2 minlen=8 lcredit=-1 dcredit=-1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>retry=3</code>：这表示用户在输入不符合要求的密码时，可以重试的次数是 3 次。</li>
+<li><code>difok=2</code>：这表示新密码和旧密码之间至少需要有 2 个字符的不同。</li>
+<li><code>minlen=8</code>：这表示密码的最小长度是 8 个字符。</li>
+<li><code>lcredit=-1</code>：这表示密码中至少需要包含一个小写字母。</li>
+<li><code>dcredit=-1</code>：这表示密码中至少需要包含一个数字。</li>
+</ul>
+<p>负号表示至少的意思。</p>
+<p>此外，ucredit：最少大写字母；ocredit：最少的字符数量；</p>
+<p><strong>设置口令有效期</strong> </p>
+<p>vi 编辑器的搜索功能：在 esc 状态下按下 “&#x2F;“ 键，这时在状态栏（也就是屏幕左下脚）就出现了 “&#x2F;“，然后输入要查找的关键字敲回车就可以了。</p>
+<p>vi 编辑器显示行号：只须按 ESC 键退出编辑内容模式，输入“：” ，再输入“set number”或者“set nu”后按回车键，就可以显示行号了。</p>
+<p>在 <code>/etc/login.defs</code> 文件中：</p>
+<p>PASS_MAX_DAYS：密码最长有效期(默认值：99999，相当于关闭了密码的时效) </p>
+<p>PASS_MIN_DAYS：密码最短有效期</p>
+<p>PASS_MIN_LEN：密码最小强度(推荐最小密码为 8 位) </p>
+<p>PASS_WARN_AGE：设定在口令失效前多少天 开始通知用户更改密码</p>
+<p><strong>针对 ssh 的登录失败锁定策略</strong> </p>
+<p>配置文件 <code>/etc/pam.d/sshd</code> </p>
+<p>使用 <code>pam_tally2.so</code> 模块设置登录失败锁定：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auth required pam_tally2.so deny=3 unlock_time=300 even_deny_root root_ unlock_time=1800</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>auth required pam_tally2.so</code>：使用 <code>pam_tally2.so</code> 模块。<code>pam_tally2.so</code> 是一个 PAM 模块，用于记录和统计登录失败的次数。</li>
+<li><code>deny=3</code>：如果一个用户连续 3 次登录失败，那么该用户的账户将被锁定。</li>
+<li><code>unlock_time=300</code>：被锁定的账户将在 300 秒（即 5 分钟）后自动解锁。</li>
+<li><code>even_deny_root</code>：即使是 root 用户，也会被锁定。</li>
+<li><code>root_unlock_time=1800</code>：被锁定的 root 用户的账户将在 1800 秒（即 30 分钟）后自动解锁。</li>
+</ul>
+<p>重置（reset）用户的登录失败计数，解锁用户：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pam_tally2 -r -u root</span><br></pre></td></tr></table></figure>
+
+<p><strong>Fail2Ban 入侵检测系统</strong> </p>
+<p>Fail2Ban 是一个入侵检测系统框架，它可以保护电脑服务器免受蛮力攻击。以 Python 程序设计语言编写，并能够在类 Unix 系统上运行，这些系统具有本地安装的数据包控制系统或防火墙的接口，例如 Iptables 或 TCP Wrapper 。</p>
+<ul>
+<li>Fail2ban 跟 DenyHosts 是类似的工具，可以阻挡有人恶意以字典暴力破解密码，通常应用于有开启 sshd、telnetd 跟 ftpd 的主机上。</li>
+<li>Fail2ban 的做法是将超过多次失败联机的 IP 列用 iptables(给 IPv4 使用) 或 ip6tables (给 IPv6 使用)禁止该 IP 之后的联机。</li>
+<li>至于要多久之后可以再允许该 IP 再次联机可以在 Fail2ban 的配置文件案内设置。</li>
+</ul>
+<h4 id="针对权限突破"><a href="#针对权限突破" class="headerlink" title="针对权限突破"></a>针对权限突破</h4><h6 id="设置-IP-是否允许访问"><a href="#设置-IP-是否允许访问" class="headerlink" title="设置 IP 是否允许访问"></a>设置 IP 是否允许访问</h6><p><strong>黑名单</strong> </p>
+<p><code>/etc/hosts.deny</code> ：list of hosts that are <em>not</em> allowed to access the system.</p>
+<p>此文件中可以配置不被允许访问的主机名单。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sshd:all:deny #表示拒绝所有ip访问</span><br><span class="line"></span><br><span class="line">sshd:47.106.218.*:deny #表示拒绝47.106.218.* ip段所有ssh访问</span><br><span class="line"></span><br><span class="line">sshd:192.168.142.74 #表示拒绝192.168.142.74 主机ssh访问</span><br></pre></td></tr></table></figure>
+
+<p><strong>白名单</strong></p>
+<p><code>/etc/hosts.allow</code> ：list of hosts that are allowed to access the system.</p>
+<p>此文件中可以配置白名单。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sshd:192.168.142.*:allow #表示192.168.142.* ip段都能ssh访问</span><br><span class="line"></span><br><span class="line">sshd:all:allow #表示允许所有ip的ssh访问</span><br><span class="line"></span><br><span class="line">sshd:192.168.142.74:allow #表示允许192.168.142.74 ssh访问</span><br></pre></td></tr></table></figure>
+
+<p>配置 iptables 防火墙策略，禁止访问：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -s $ip -j DROP </span><br></pre></td></tr></table></figure>
+
+<h6 id="防止端口扫描"><a href="#防止端口扫描" class="headerlink" title="防止端口扫描"></a>防止端口扫描</h6><ul>
+<li>将常见端口号修改为其他端口号，不易识别</li>
+<li>关闭不必要的服务 </li>
+<li>使用 iptables 等防火墙防止端口扫描 </li>
+<li>布置陷阱。我们随机监听一些未使用的端口，假如有 IP 在短时间内前来连接好几个，那么很可能就是扫描者。于是可临时屏蔽该 IP 所有流量，保护那些还未被扫到的端口。</li>
+</ul>
+<h6 id="禁止-root-用户远程登录"><a href="#禁止-root-用户远程登录" class="headerlink" title="禁止 root 用户远程登录"></a>禁止 root 用户远程登录</h6><p><strong>配置 &#x2F;etc&#x2F;ssh&#x2F;sshd_config 文件</strong> </p>
+<p>这是 sshd 的配置文件，其中包含了 ssh 的配置规则。PermitRootLogin 设置 root 是否运行用 ssh 登录。</p>
+<p>这里一定要设置成：PermitRootLogin no</p>
+<h6 id="防止提权"><a href="#防止提权" class="headerlink" title="防止提权"></a>防止提权</h6><p><strong>禁止 su 非法提权</strong> </p>
+<p>配置文件：<code>/etc/pam.d/su</code> ，在此配置文件中配置只允许 wheel 组用户 su 到 root 。</p>
+<p>不允许 nosu 组的用户 su：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auth       required   pam_wheel.so deny group=nosu</span><br></pre></td></tr></table></figure>
+
+<p>只允许 wheel 组的用户 su：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auth       required   pam_wheel.so group=wheel</span><br></pre></td></tr></table></figure>
+
+<p><strong>防止 SUID 权限</strong> </p>
+<p>SUID 是文件的一种特殊权限（除去读，写，执行的权限），可以使普通用户运行此文件时，被临时授予文件所有者的权限，以此权限来运行。</p>
+<p>所以利用 suid 提权的核心就是运行 root 用户的拥有 suid 权限的文件，那么运行该文件的时候就得获得 root 用户的身份了。</p>
+<p>设置 suid 权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod u+s filename #设置 suid</span><br><span class="line">chmod u-s filename #去除 suid</span><br></pre></td></tr></table></figure>
+
+<p>找出 root 用户所有设置了 suid 的文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -user root -perm -4000 -print 2&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-perm -4000</code>：这表示查找的文件的权限设置中包含 <code>setuid</code> （suid）位。</li>
+</ul>
+<p><strong>防止 sudo 提权</strong> </p>
+<p>配置文件：<code>/etc/sudoers</code> </p>
+<p>visudo 命令是专门用来编辑 &#x2F;etc&#x2F;sudoers 文件的工具，保存退出时会自动检查语法错误。</p>
+<p>如果给 farmsec1 用户添加 sudo 权限： <code>farm1	ALL=(ALL)	ALL</code> ，</p>
+<p>如果给 farmsec 用户组添加 sudo 权限： <code>%farmsec	ALL=(ALL)	ALL</code> 。</p>
+<p>如果普通用户被添加了 sudo 权限，那么普通用户输入自己的密码就可以切换到 root 用户，而不需要知道 root 用户的密码。</p>
+<h4 id="针对攻击痕迹清理"><a href="#针对攻击痕迹清理" class="headerlink" title="针对攻击痕迹清理"></a>针对攻击痕迹清理</h4><h6 id="auditd-Linux-审核守护程序"><a href="#auditd-Linux-审核守护程序" class="headerlink" title="auditd ( Linux 审核守护程序)"></a>auditd ( Linux 审核守护程序)</h6><p>推荐博客：<a target="_blank" rel="noopener" href="https://zgao.top/linux%e5%ae%a1%e8%ae%a1%e5%b7%a5%e5%85%b7auditd%e4%bd%bf%e7%94%a8%e8%af%a6%e8%a7%a3/">linux 审计工具 auditd 使用详解</a></p>
+<p>Red Hat&#x2F;CentOS&#x2F;Fedora: 通常已经默认安装，Debian 体系的 Linux 比如 Ubuntu、Kali 需要手动安装。</p>
+<h6 id="rsyslog-日志管理工具"><a href="#rsyslog-日志管理工具" class="headerlink" title="rsyslog 日志管理工具"></a>rsyslog 日志管理工具</h6><h4 id="补丁和更新"><a href="#补丁和更新" class="headerlink" title="补丁和更新"></a>补丁和更新</h4><p>基于 redhat 的更新命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">yum check-update #列出可更新的软件清单</span><br><span class="line"></span><br><span class="line">yum upgrade &lt;package_name&gt; #升级指定软件</span><br><span class="line"></span><br><span class="line">yum info updates #列出可更新的软件包详细信息</span><br><span class="line"></span><br><span class="line">yum updateinfo list updates security #列出可用的安全补丁</span><br><span class="line"></span><br><span class="line">yum update #升级系统版本和所有软件</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="安全产品"><a href="#安全产品" class="headerlink" title="安全产品"></a>安全产品</h4><h6 id="安全厂商"><a href="#安全厂商" class="headerlink" title="安全厂商"></a>安全厂商</h6><p><a target="_blank" rel="noopener" href="https://support.sangfor.com.cn/?pageType=2">深信服产品</a></p>
+<p><a target="_blank" rel="noopener" href="https://venustech.download.venuscloud.cn/">启明星辰统一升级中心</a></p>
+<p><a target="_blank" rel="noopener" href="https://help.aliyun.com/zh/security-center/">阿里云-云安全中心</a></p>
+<h6 id="产品分类"><a href="#产品分类" class="headerlink" title="产品分类"></a>产品分类</h6><p>监控、告警 </p>
+<p>防火墙 </p>
+<p>WAF</p>
+<p>堡垒机（运维审计系统）</p>
+<p>IDS 入侵检测系统</p>
+<p>IPS 入侵防御系统</p>
+<p>态势感知</p>
+<p>主机杀毒</p>
+<p>安全管理平台（SCO）</p>
+<p>抗 DDos</p>
+<p>VPN</p>
+<p>蜜罐 honeypot </p>
+<p>终端安全管理系统 EDR</p>
+<p>漏洞扫描&#x2F;渗透测试 服务</p>
+<h4 id="异常隧道特征"><a href="#异常隧道特征" class="headerlink" title="异常隧道特征"></a>异常隧道特征</h4><h6 id="DNS-隧道"><a href="#DNS-隧道" class="headerlink" title="DNS 隧道"></a>DNS 隧道</h6><p>奇怪的域名；</p>
+<p>TXT 类型；</p>
+<h6 id="ICMP-隧道"><a href="#ICMP-隧道" class="headerlink" title="ICMP 隧道"></a>ICMP 隧道</h6><p>ICMP 协议用于探测内网主机是否存活。</p>
+<p>有内外连接的；</p>
+<p>数据包很多的；</p>
+<p>数据包内容很大的；</p>
+<h4 id="勒索病毒"><a href="#勒索病毒" class="headerlink" title="勒索病毒"></a>勒索病毒</h4><p>什么是勒索病毒：</p>
+<ul>
+<li>勒索病毒是指通过暴力破解、ms17010 以及漏洞攻击钓鱼等方式攻击到客户内网主机，并对重要服务器数据进行加密的病毒。</li>
+</ul>
+<p>勒索病毒类型：</p>
+<ul>
+<li>Wannacry</li>
+<li>Wannacry2.0</li>
+</ul>
+<p>勒索病毒预防：</p>
+<ul>
+<li>首先避免高危服务，如 rdp、smb、ssh 对互联网开放</li>
+<li>对内进行安全意识培训，避免普通员工点击恶意文件</li>
+<li>定期对互联网业务系统进行漏洞扫描和渗透，及时发现高危漏洞，并及时修补</li>
+<li>做好备份，有条件的可以实时异地备份</li>
+</ul>
+<p>勒索病毒特征：</p>
+<ol>
+<li>所有文件都会被加后缀</li>
+<li>勒索者会留下联系方式</li>
+</ol>
+<p>处理办法：</p>
+<ul>
+<li>根据后缀和联系方式去互联网搜索，有概率搜到勒索病毒的类型及传播方式</li>
+<li>找专门的谈判公司去跟勒索者谈判，以较低价格购买解密私钥</li>
+</ul>
+<p>既然无法还原，勒索应急的意义是什么：</p>
+<ul>
+<li>溯源，找到入口，修补漏洞，避免再次出现</li>
+</ul>
+<p>勒索应急流程：</p>
+<ul>
+<li>了解客户对公网映射的情况，开放了哪些端口和服务，是否有高危的端口和服务。</li>
+<li>勒索病毒一般是通过 rdp 爆破进来的，一般针对 Windows 系统。</li>
+<li>查看 Windows 事件查看器：4624，这个事件 ID 表示成功登陆的用户，用来筛选该系统的用户登陆成功情况。 4625，这个事件 ID 表示登陆失败的用户。</li>
+<li>排查客户是否使用了弱密码。有弱密码，有爆破记录，在非业务时间非本人登录，大概率可以确定了。</li>
+</ul>
+<p>常见的勒索病毒后缀有：</p>
+<p>Mallox、.crypt、.encrypt、.locked、.locky、.wallet、.kraken、.zzz、.dharma 等 。</p>
+<p>据 360 统计：2024 年 2 月，Phobos 家族占比 19.89% 居首位，第二的是占比 17.20% 的 Makop ，TargetOwner 家族以 15.05% 位居第三。</p>
+<h4 id="Zerologon-漏洞"><a href="#Zerologon-漏洞" class="headerlink" title="Zerologon 漏洞"></a>Zerologon 漏洞</h4><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2209941">域提权漏洞-Zerologon 漏洞分析</a> </p>
+<p>利用该漏洞可将域管理员密码置空，利用的是 nrpc 协议，伴随出现的日志事件 id 为 4742 5805 </p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src="https://s1.imagehub.cc/images/2024/07/31/b9777636e70a151e39d58fe8f3f14a3e.th.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src="https://s1.imagehub.cc/images/2024/07/31/b9777636e70a151e39d58fe8f3f14a3e.th.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">5un5et</div><div class="post-copyright__author_desc"></div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://example.com/2024/08/13/%E8%93%9D%E9%98%9F%E9%98%B2%E5%BE%A1%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://example.com/2024/08/13/%E8%93%9D%E9%98%9F%E9%98%B2%E5%BE%A1%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/')">蓝队防御知识汇总</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://example.com/2024/08/13/%E8%93%9D%E9%98%9F%E9%98%B2%E5%BE%A1%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=蓝队防御知识汇总&amp;url=http://example.com/2024/08/13/%E8%93%9D%E9%98%9F%E9%98%B2%E5%BE%A1%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/&amp;pic=" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本部落格所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 許可協議。轉載請註明來自 <a href="http://example.com" target="_blank">5un5et's Blog | Easy living</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"></div></div></div><div class="post_share"><div class="social-share" data-image="https://s1.imagehub.cc/images/2024/07/31/b9777636e70a151e39d58fe8f3f14a3e.th.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src="https://s1.imagehub.cc/images/2024/07/31/b9777636e70a151e39d58fe8f3f14a3e.th.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src="https://bu.dusays.com/2021/01/15/8e91b2cbf2236.png" alt="status"/></div></div><div class="author-info__description"></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">5un5et</h1><div class="author-info__desc"></div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/3unSet" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/108437678" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目錄</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">流量分析</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">蚁剑流量特征</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%86%B0%E8%9D%8E%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">冰蝎流量特征</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%93%A5%E6%96%AF%E6%8B%89%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">哥斯拉流量特征</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%8F%9C%E5%88%80%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">菜刀流量特征</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#CS-%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81"><span class="toc-number">1.0.0.5.</span> <span class="toc-text">CS 流量特征</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E7%A0%94%E5%88%A4"><span class="toc-number">2.</span> <span class="toc-text">分析研判</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#cpu-%E8%B5%84%E6%BA%90%E5%8D%A0%E7%94%A8%E5%88%86%E6%9E%90"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">cpu 资源占用分析</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">查看系统进程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">查看网络连接</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97"><span class="toc-number">2.0.0.4.</span> <span class="toc-text">系统日志</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E5%BA%94%E7%94%A8%E6%97%A5%E5%BF%97"><span class="toc-number">2.0.0.5.</span> <span class="toc-text">各种应用日志</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90"><span class="toc-number">2.0.0.6.</span> <span class="toc-text">日志分析</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4"><span class="toc-number">2.0.0.7.</span> <span class="toc-text">历史命令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7"><span class="toc-number">2.0.0.8.</span> <span class="toc-text">系统用户</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E6%88%96%E5%91%BD%E4%BB%A4%E6%98%AF%E5%90%A6%E8%A2%AB%E4%BF%AE%E6%94%B9"><span class="toc-number">2.0.0.9.</span> <span class="toc-text">查看系统文件或命令是否被修改</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E4%BB%BB%E5%8A%A1%E4%B8%8E%E5%90%AF%E5%8A%A8%E9%A1%B9"><span class="toc-number">2.0.0.10.</span> <span class="toc-text">自动任务与启动项</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-ssh-key-%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.0.11.</span> <span class="toc-text">查看 ssh key 文件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Windows-%E6%97%A5%E5%BF%97%E6%9F%A5%E7%9C%8B%EF%BC%88%E4%BA%8B%E4%BB%B6%E6%9F%A5%E7%9C%8B%E5%99%A8%EF%BC%89"><span class="toc-number">2.0.0.12.</span> <span class="toc-text">Windows 日志查看（事件查看器）</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">事件处置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB%E4%B8%BB%E6%9C%BA"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">隔离主机</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%98%BB%E6%96%AD%E9%80%9A%E4%BF%A1"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">阻断通信</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E6%9C%A8%E9%A9%AC%E8%BF%9B%E7%A8%8B%E5%8F%8A%E5%85%B6%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">清除木马进程及其守护进程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E8%A2%AB%E7%AF%A1%E6%94%B9%EF%BC%8C%E6%81%A2%E5%A4%8D%E6%96%87%E4%BB%B6"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">系统命令被篡改，恢复文件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9%E6%B8%85%E7%90%86"><span class="toc-number">3.0.0.5.</span> <span class="toc-text">启动项清理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%B8%85%E7%90%86"><span class="toc-number">3.0.0.6.</span> <span class="toc-text">定时任务清理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ssh-key-%E6%B8%85%E7%90%86"><span class="toc-number">3.0.0.7.</span> <span class="toc-text">ssh key 清理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%AF%E7%96%91%E7%94%A8%E6%88%B7%E6%B8%85%E7%90%86"><span class="toc-number">3.0.0.8.</span> <span class="toc-text">可疑用户清理</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA"><span class="toc-number">4.</span> <span class="toc-text">安全加固</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%92%88%E5%AF%B9%E7%88%86%E7%A0%B4"><span class="toc-number">4.1.</span> <span class="toc-text">针对爆破</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%A4%9A%E4%BD%99%E7%94%A8%E6%88%B7"><span class="toc-number">4.1.0.1.</span> <span class="toc-text">删除多余用户</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%A3%E4%BB%A4%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5"><span class="toc-number">4.1.0.2.</span> <span class="toc-text">口令安全策略</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%92%88%E5%AF%B9%E6%9D%83%E9%99%90%E7%AA%81%E7%A0%B4"><span class="toc-number">4.2.</span> <span class="toc-text">针对权限突破</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-IP-%E6%98%AF%E5%90%A6%E5%85%81%E8%AE%B8%E8%AE%BF%E9%97%AE"><span class="toc-number">4.2.0.1.</span> <span class="toc-text">设置 IP 是否允许访问</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%98%B2%E6%AD%A2%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">4.2.0.2.</span> <span class="toc-text">防止端口扫描</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%A6%81%E6%AD%A2-root-%E7%94%A8%E6%88%B7%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="toc-number">4.2.0.3.</span> <span class="toc-text">禁止 root 用户远程登录</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%98%B2%E6%AD%A2%E6%8F%90%E6%9D%83"><span class="toc-number">4.2.0.4.</span> <span class="toc-text">防止提权</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%92%88%E5%AF%B9%E6%94%BB%E5%87%BB%E7%97%95%E8%BF%B9%E6%B8%85%E7%90%86"><span class="toc-number">4.3.</span> <span class="toc-text">针对攻击痕迹清理</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#auditd-Linux-%E5%AE%A1%E6%A0%B8%E5%AE%88%E6%8A%A4%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.3.0.1.</span> <span class="toc-text">auditd ( Linux 审核守护程序)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#rsyslog-%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">4.3.0.2.</span> <span class="toc-text">rsyslog 日志管理工具</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A5%E4%B8%81%E5%92%8C%E6%9B%B4%E6%96%B0"><span class="toc-number">4.4.</span> <span class="toc-text">补丁和更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81"><span class="toc-number">4.5.</span> <span class="toc-text">安全产品</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%8E%82%E5%95%86"><span class="toc-number">4.5.0.1.</span> <span class="toc-text">安全厂商</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E5%88%86%E7%B1%BB"><span class="toc-number">4.5.0.2.</span> <span class="toc-text">产品分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E9%9A%A7%E9%81%93%E7%89%B9%E5%BE%81"><span class="toc-number">4.6.</span> <span class="toc-text">异常隧道特征</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#DNS-%E9%9A%A7%E9%81%93"><span class="toc-number">4.6.0.1.</span> <span class="toc-text">DNS 隧道</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ICMP-%E9%9A%A7%E9%81%93"><span class="toc-number">4.6.0.2.</span> <span class="toc-text">ICMP 隧道</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92"><span class="toc-number">4.7.</span> <span class="toc-text">勒索病毒</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Zerologon-%E6%BC%8F%E6%B4%9E"><span class="toc-number">4.8.</span> <span class="toc-text">Zerologon 漏洞</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/13/%E8%93%9D%E9%98%9F%E9%98%B2%E5%BE%A1%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" title="蓝队防御知识汇总">蓝队防御知识汇总</a><time datetime="2024-08-13T02:35:07.000Z" title="發表於 2024-08-13 10:35:07">2024-08-13</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2024 By <a class="footer-bar-link" href="/" title="5un5et" target="_blank">5un5et</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/" title="tag"><div class="headline">標籤</div><div class="length-num">0</div></a><a href="/categories/" title="category"><div class="headline">分類</div><div class="length-num">1</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="顯示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>顯示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="閱讀模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="簡繁轉換">繁</button><button id="darkmode" type="button" title="淺色和深色模式轉換"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="單欄和雙欄切換"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="設定"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目錄"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到頂部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="9911345707" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://music.163.com/#/playlist?id=9911345707&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 5un5et 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
